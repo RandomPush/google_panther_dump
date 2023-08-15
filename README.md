@@ -1,0 +1,14 @@
+# panther_beta-user UpsideDownCake UPB2.230407.014 10064957 release-keys
+- manufacturer: google
+- platform: gs201
+- codename: panther
+- flavor: panther_beta-user
+- release: 13
+- id: UPB2.230407.014
+- incremental: 10064957
+- tags: release-keys
+- fingerprint: google/panther_beta/panther:UpsideDownCake/UPB2.230407.014/10064957:user/release-keys
+- is_ab: true
+- brand: google
+- branch: panther_beta-user-UpsideDownCake-UPB2.230407.014-10064957-release-keys
+- repo: google_panther_dump
