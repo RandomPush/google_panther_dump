@@ -1,0 +1,50 @@
+{
+	"pipelines": [
+		{
+			"name": "default",
+			"device": "/dev/touch_offload",
+			"algorithms": [
+				{
+					"class": "SegmentationAlgorithm",
+					"name": "segmentation",
+				},
+				{
+					"class": "GripSuppressionAlgorithm",
+					"name": "grip_suppression",
+					"blocked_by": ["segmentation"],
+					"parameters": {
+						"gripEnableCancel": true,
+						"palmEnableCancel": true
+					}
+				},
+				{
+					"class": "EarCheekDetectionAlgorithm",
+					"name": "earcheek",
+					"parameters": {
+						"prob_threshold_lo": 0.9,
+						"prob_threshold_hi": 0.99,
+						"min_frames_under_lower_th": 10,
+						"min_frames_over_upper_th": 30,
+					},
+					"blocked_by": ["grip_suppression"],
+				},
+				{
+					"class": "TouchflowAlgorithm",
+					"name": "touchflow",
+					"parameters": { "requires_self_data": true },
+					"blocked_by": ["earcheek"],
+				},
+				{
+					"class": "ReportingAlgorithm",
+					"name": "reporting",
+					"blocked_by": ["touchflow"],
+				},
+				{
+					"class": "TouchSuezAlgorithm",
+					"name": "touchsuez",
+					"blocked_by": ["reporting"],
+				}
+			],
+		}
+	]
+}
